@@ -2,15 +2,26 @@ package domain;
 
 import java.util.List;
 
-public class Curso implements BaseEntity<Long> {
-	private Long id;
+import javax.persistence.*;
 
+@Entity
+public class Curso {
+	@Id
+	private Long id;
+	
+	@Column(unique = true, nullable = false, updatable = false, length = 64)
 	private String codigo;
 
 	private String nombre;
 
 	private Integer creditos;
 
+	@ManyToMany
+    @JoinTable (
+            name = "Prerequisitos",
+            joinColumns = @JoinColumn(name = "CursoId1", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="CursoId2", referencedColumnName = "id")
+    )
 	private List<Curso> prerequisitos;
 
 	@Override
