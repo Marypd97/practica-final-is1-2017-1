@@ -16,33 +16,33 @@ import domain.Person;
 @Controller
 public class PersonController {
 	
-	@Autowired
+	@Autowired(required=true)
 	PersonService personService;
 
-	@RequestMapping(value = "/person", method = RequestMethod.POST)
-	String savePerson(@ModelAttribute Person person, ModelMap model) {
-		System.out.println("savving: " + person.getId());
-		personService.save(person);
-		return showPerson(person.getId(), model);
-	}
-	@RequestMapping(value = "/add-person", method = RequestMethod.GET)
-	String addNewPerson(@RequestParam(required = false) Long id, ModelMap model) {
-		Person person = id == null ? new Person() : personService.get(id);
-		model.addAttribute("person", person);
-		return "add-person";
-	}
+//	@RequestMapping(value = "/person", method = RequestMethod.POST)
+//	String savePerson(@ModelAttribute Person person, ModelMap model) {
+//		System.out.println("savving: " + person.getId());
+//		personService.save(person);
+//		return showPerson(person.getId(), model);
+//	}
+//	@RequestMapping(value = "/add-person", method = RequestMethod.GET)
+//	String addNewPerson(@RequestParam(required = false) Long id, ModelMap model) {
+//		Person person = id == null ? new Person() : personService.get(id);
+//		model.addAttribute("person", person);
+//		return "add-person";
+//	}
 
 	@RequestMapping(value = "/person", method = RequestMethod.GET)
-	String showPerson(@RequestParam(required = false) Long id, ModelMap model) {
-		if (id != null) {
-			Person person = personService.get(id);
-			model.addAttribute("person", person);
-			return "person";
-		} else {
+	String showPerson( ModelMap model) {
+//		if (id != null) {
+//			Person person = personService.get(id);
+//			model.addAttribute("person", person);
+//			return "person";
+//		} else {
 			Collection<Person> people = personService.getAll();
 			model.addAttribute("people", people);
 			return "people";
-		}
+		
 	}
 
 }

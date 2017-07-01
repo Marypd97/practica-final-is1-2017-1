@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Matricula {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
 	@ManyToOne
@@ -19,12 +20,18 @@ public class Matricula {
 
 	private String semestre;
 
-	@Override
+	public Matricula(Curso curso, Alumno alumno, String semestre){
+		this.curso=curso;
+		this.alumno=alumno;
+		this.semestre=semestre;
+	}
+	
+//	@Override
 	public Long getId() {
 		return id;
 	}
 
-	@Override
+//	@Override
 	public void setId(Long id) {
 		this.id = id;
 	}

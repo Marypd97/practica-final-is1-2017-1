@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Entity
 public class Curso {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(unique = true, nullable = false, updatable = false, length = 64)
@@ -24,12 +25,12 @@ public class Curso {
     )
 	private List<Curso> prerequisitos;
 
-	@Override
+//	@Override
 	public Long getId() {
 		return id;
 	}
 
-	@Override
+//	@Override
 	public void setId(Long id) {
 		this.id = id;
 	}

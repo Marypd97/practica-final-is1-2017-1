@@ -3,18 +3,18 @@ package domain;
 import javax.persistence.*;
 
 @Entity
-public class Alumno  {
+public class Alumno  implements BaseEntity<Long> {
 	
 	@Id
+	@Column (name="DNI")
 	private Long id;
 
-	@Column(length = 64)
 	private String nombres;
 	
-	@Column(length = 64)
+
 	private String apellidoPaterno;
 
-	@Column(length = 64)	
+
 	private String apellidoMaterno;
 
 	@Override
