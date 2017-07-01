@@ -52,7 +52,7 @@ public class MatriculaService {
 	public boolean Matricular (long idAlumno, long idCurso, String semestre){
 		Collection<Curso> Prerequisitos= cursoRepository.findPrerequisitos(idCurso);
 		for(Curso i: Prerequisitos){
-			if(!AproboCurso(idAlumno, idCurso)){
+			if(!AproboCurso(idAlumno, i.getId())){
 				return false;
 			}
 		}
